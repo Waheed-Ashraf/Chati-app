@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: ColorPallet.mainColor),
       ),
       routes: {
-        'LoginScreen': (context) => const LoginScreen(),
-        'RegisterScreen': (context) => const RegisterScreen(),
+        'LoginScreen': (context) => LoginScreen(),
+        'RegisterScreen': (context) => RegisterScreen(),
       },
       initialRoute: 'LoginScreen',
     );

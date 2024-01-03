@@ -2,12 +2,13 @@ import 'package:chati_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomBotton extends StatelessWidget {
-  CustomBotton({required this.text});
+  CustomBotton({required this.text, required this.ontap});
   String text;
+  VoidCallback? ontap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: ontap,
       child: Container(
         alignment: Alignment.center,
         width: double.infinity,

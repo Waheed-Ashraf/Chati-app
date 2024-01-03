@@ -4,7 +4,9 @@ import 'package:chati_app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+  String? email;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +52,26 @@ class LoginScreen extends StatelessWidget {
               height: 10,
             ),
             CustomTextField(
+              obscure: false,
+              onchange: (data) {
+                email = data;
+              },
               hintText: 'Enter your email',
             ),
             const SizedBox(
               height: 10,
             ),
             CustomTextField(
+              obscure: true,
+              onchange: (data) {
+                password = data;
+              },
               hintText: 'Enter your password',
             ),
             const SizedBox(
               height: 10,
             ),
-            CustomBotton(text: 'Login'),
+            CustomBotton(ontap: () {}, text: 'Login'),
             const SizedBox(
               height: 10,
             ),
