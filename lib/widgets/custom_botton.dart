@@ -19,7 +19,8 @@ class CustomBotton extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            fontFamily: 'SeymourOne',
+            // fontFamily: 'SeymourOne',
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
