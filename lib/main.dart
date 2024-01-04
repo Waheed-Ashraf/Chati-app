@@ -1,5 +1,6 @@
 import 'package:chati_app/constants.dart';
 import 'package:chati_app/firebase_options.dart';
+import 'package:chati_app/views/chat_screen.dart';
 import 'package:chati_app/views/login.dart';
 import 'package:chati_app/views/register_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'LoginScreen': (context) => LoginScreen(),
         'RegisterScreen': (context) => RegisterScreen(),
+        'ChatScreen': (context) => ChatScreen(),
       },
       initialRoute: 'LoginScreen',
     );
