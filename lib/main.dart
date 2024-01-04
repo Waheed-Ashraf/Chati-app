@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         'RegisterScreen': (context) => RegisterScreen(),
         'ChatScreen': (context) => ChatScreen(),
       },
-      initialRoute: 'LoginScreen',
+      initialRoute: 'ChatScreen',
     );
   }
 }

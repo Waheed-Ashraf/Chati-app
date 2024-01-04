@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   CustomTextField(
-      {required this.hintText, required this.onchange, required this.obscure});
-  String hintText;
+      {this.hintText,
+      required this.onchange,
+      required this.obscure,
+      this.suffix});
+  String? hintText;
+  Icon? suffix;
   bool obscure;
   Function(String) onchange;
   @override
@@ -18,6 +22,7 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscure,
       onChanged: onchange,
       decoration: InputDecoration(
+        suffix: suffix,
         // label: const Text('Email'),
         hintText: hintText,
         border: OutlineInputBorder(
