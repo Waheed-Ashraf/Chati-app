@@ -2,10 +2,13 @@ import 'package:chati_app/constants.dart';
 import 'package:chati_app/widgets/chat_bubble.dart';
 import 'package:chati_app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
-
+  ChatScreen({super.key});
+  CollectionReference messages =
+      FirebaseFirestore.instance.collection('messages');
+  final TextEditingController _textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,16 +38,7 @@ class ChatScreen extends StatelessWidget {
           Container(
             child: Expanded(
               child: ListView(
-                children: [
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
-                  ChatBubble(),
+                children: const [
                   ChatBubble(),
                   ChatBubble(),
                   ChatBubble(),
@@ -61,9 +55,14 @@ class ChatScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: CustomTextField(
-                onchange: (value) {},
+                onSubmitted: (value) {
+                  messages.add({
+                    'message': value,
+                  });
+                  _textController.clear();
+                },
                 obscure: false,
-                suffix: Icon(
+                suffix: const Icon(
                   Icons.send,
                   color: ColorPallet.mainColor,
                 )),

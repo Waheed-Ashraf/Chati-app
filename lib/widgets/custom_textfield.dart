@@ -2,15 +2,19 @@ import 'package:chati_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {this.hintText,
-      required this.onchange,
-      required this.obscure,
-      this.suffix});
+  CustomTextField({
+    this.hintText,
+    this.onchange,
+    required this.obscure,
+    this.suffix,
+    this.onSubmitted,
+  });
+  Function(dynamic)? onSubmitted;
+
   String? hintText;
   Icon? suffix;
   bool obscure;
-  Function(String) onchange;
+  Function(String)? onchange;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -19,10 +23,12 @@ class CustomTextField extends StatelessWidget {
           return ("This field can't be empty");
         }
       },
+      onFieldSubmitted: onSubmitted,
       obscureText: obscure,
       onChanged: onchange,
       decoration: InputDecoration(
-        suffix: suffix,
+        suffixIcon: suffix, // Set the suffix icon here.
+
         // label: const Text('Email'),
         hintText: hintText,
         border: OutlineInputBorder(
