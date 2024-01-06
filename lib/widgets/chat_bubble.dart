@@ -1,9 +1,10 @@
 import 'package:chati_app/constants.dart';
+import 'package:chati_app/models/massag-model.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble({super.key});
-
+  ChatBubble({super.key, required this.message});
+  Message message;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -19,7 +20,7 @@ class ChatBubble extends StatelessWidget {
             topRight: Radius.circular(16),
           ),
         ),
-        child: Text('Hello world '),
+        child: Text(message.message),
       ),
     );
   }
