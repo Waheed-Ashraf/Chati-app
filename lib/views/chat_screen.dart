@@ -7,8 +7,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});
-  final controller = ScrollController();
   final TextEditingController _textController = TextEditingController();
+
+  // void _handleSubmittedText(String value) {
+  //   print('Submitted: $value');
+  //   // Handle the submitted text here.
+  // }
+
+  final controller = ScrollController();
 
   CollectionReference messages =
       FirebaseFirestore.instance.collection('messages');
@@ -62,12 +68,13 @@ class ChatScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: CustomTextField(
+                    controller: _textController,
                     onSubmitted: (value) {
                       messages.add({
                         'message': value,
                         'created at': DateTime.now(),
                       });
-                      _textController.clear();
+                      // _textController.clear();
                       controller.animateTo(0,
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn);
@@ -93,3 +100,5 @@ class ChatScreen extends StatelessWidget {
     );
   }
 }
+
+final TextEditingController _textController = TextEditingController();

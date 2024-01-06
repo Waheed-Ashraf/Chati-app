@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 CustomTextField(
                   obscure: false,
-                  onchange: (data) {
+                  onChanged: (data) {
                     email = data;
                   },
                   hintText: 'Enter your email',
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 CustomTextField(
                   obscure: true,
-                  onchange: (data) {
+                  onChanged: (data) {
                     password = data;
                   },
                   hintText: 'Enter your password',
