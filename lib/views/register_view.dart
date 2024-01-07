@@ -58,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 CustomTextField(
                   obscure: false,
-                  onChanged: (data) {
+                  onChange: (data) {
                     email = data;
                   },
                   hintText: 'Enter your email',
@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 CustomTextField(
                   obscure: true,
-                  onChanged: (data) {
+                  onChange: (data) {
                     password = data;
                   },
                   hintText: 'Enter your password',

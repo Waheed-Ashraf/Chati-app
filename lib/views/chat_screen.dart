@@ -20,6 +20,7 @@ class ChatScreen extends StatelessWidget {
       FirebaseFirestore.instance.collection('messages');
   @override
   Widget build(BuildContext context) {
+    String email = ModalRoute.of(context)!.settings.arguments as String;
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy('created at', descending: true).snapshots(),
       builder: (context, snapshot) {
@@ -30,6 +31,7 @@ class ChatScreen extends StatelessWidget {
           }
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -60,26 +62,28 @@ class ChatScreen extends StatelessWidget {
                       controller: controller,
                       itemCount: messagesList.length,
                       itemBuilder: (context, index) {
-                        return ChatBubble(message: messagesList[index]);
+                        return messagesList[index].id == email
+                            ? ChatBubble(message: messagesList[index])
+                            : ChatBubbleForFriend(message: messagesList[index]);
                       },
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: CustomTextField(
+                  child: CustomTextFieldtow(
                     controller: _textController,
                     onSubmitted: (value) {
                       messages.add({
                         'message': value,
                         'created at': DateTime.now(),
+                        'id': email,
                       });
-                      // _textController.clear();
+                      _textController.clear();
                       controller.animateTo(0,
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn);
                     },
-                    obscure: false,
                     suffix: const Icon(
                       Icons.send,
                       color: ColorPallet.mainColor,
@@ -90,7 +94,7 @@ class ChatScreen extends StatelessWidget {
             ),
           );
         } else {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: Text('Loading ....'),
             ),
@@ -100,5 +104,3 @@ class ChatScreen extends StatelessWidget {
     );
   }
 }
-
-final TextEditingController _textController = TextEditingController();

@@ -2,8 +2,9 @@ import 'dart:convert';
 
 class Message {
   String message;
-  Message(this.message);
+  final String id;
+  Message(this.message, this.id);
   factory Message.fromjson(jsonData) {
-    return Message(jsonData['message']);
+    return Message(jsonData['message'], jsonData['id']);
   }
 }

@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 CustomTextField(
                   obscure: false,
-                  onChanged: (data) {
+                  onChange: (data) {
                     email = data;
                   },
                   hintText: 'Enter your email',
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 CustomTextField(
                   obscure: true,
-                  onChanged: (data) {
+                  onChange: (data) {
                     password = data;
                   },
                   hintText: 'Enter your password',
@@ -99,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           await signInMethod();
                           // ignore: use_build_context_synchronously
-                          Navigator.pushNamed(context, "ChatScreen");
+                          Navigator.pushNamed(context, "ChatScreen",
+                              arguments: email);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             // ignore: use_build_context_synchronously
